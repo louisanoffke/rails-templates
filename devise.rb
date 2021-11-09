@@ -164,24 +164,9 @@ after_bundle do
   # Webpacker / Yarn
   ########################################
   run 'yarn add popper.js jquery bootstrap@4.6'
+  run "rails webpacker:install:stimulus"
   append_file 'app/javascript/packs/application.js', <<~JS
-
-
-    // ----------------------------------------------------
-    // Note(lewagon): ABOVE IS RAILS DEFAULT CONFIGURATION
-    // WRITE YOUR OWN JS STARTING FROM HERE 👇
-    // ----------------------------------------------------
-
-    // External imports
-    import "bootstrap";
-
-    // Internal imports, e.g:
-    // import { initSelect2 } from '../components/init_select2';
-
-    document.addEventListener('turbolinks:load', () => {
-      // Call your functions here, e.g:
-      // initSelect2();
-    });
+    import "bootstrap"
   JS
 
   inject_into_file 'config/webpack/environment.js', before: 'module.exports' do
